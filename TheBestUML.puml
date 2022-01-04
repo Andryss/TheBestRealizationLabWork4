@@ -1,0 +1,66 @@
+@startuml
+'Текст задания:
+'
+'Издательская компания «Эксмо» совместно с Hoff представила данные по
+'книжным предпочтениям россиян в 2021 году: абсолютным лидером продаж
+'стали книги (издание и переиздание) Михаила Лабковского «Хочу и буду»,
+'сообщили в пресс-службе.
+'
+'Книги психолога лидировали по продажам по всей стране: за год было
+'продано более 129 тыс. экземпляров первого издания и 34,5 тыс. второго.
+'
+'На втором месте по популярности у покупателей детектив «Внутри убийцы»
+'израильского писателя Майка Омера (более 92 тыс. экземпляров) про
+'криминального психолога-женщину, расследующую череду жестоких
+'преступлений. Тройку лидеров продаж замыкает роман «Transhumanism inc.»
+'Виктора Пелевина — новинка российского автора разошлась в количестве 71
+'тыс. экземпляров.
+
+skinparam classAttributeIconSize 0
+
+enum Genre {
+ADVENTURE("приключение")
+GRAPHIC_NOVEL("визуальная новелла")
+DETECTIVE("детектив")
+DRAMA("драма")
+FANTASY("фантастика")
+...
+(here will be more genres)
+--Fields--
+- final String name
+--Constructors--
+Genre(String food)
+--Methods--
++ static getRandomGenre() : Genre
++ getName() : String
+}
+
+interface Readable {
+--Methods--
+read() : String
+}
+
+class Book implements Readable {
+}
+
+abstract class People {
+}
+
+abstract class Publisher {
+}
+
+class ReadingWorld {
+--Fields--
+String country
+int year
+HashMap<String,Integer> population
+People[] readingPeople
+Readable[] books
+}
+
+class TooMuchPeopleException extends RuntimeException {
+}
+
+class CountryDoesNotExistException extends Exception {
+}
+@enduml
