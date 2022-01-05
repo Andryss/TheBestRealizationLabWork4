@@ -16,23 +16,37 @@
 'Виктора Пелевина — новинка российского автора разошлась в количестве 71
 'тыс. экземпляров.
 
-skinparam classAttributeIconSize 0
-
 enum Genre {
-ADVENTURE("приключение")
-GRAPHIC_NOVEL("визуальная новелла")
+ADVENTURE("приключенческая книга")
+VISUAL_NOVEL("визуальная новелла")
 DETECTIVE("детектив")
 DRAMA("драма")
 FANTASY("фантастика")
-...
-(here will be more genres)
+HISTORICLAL("историческая книга")
+PSYCHOLOGIC("Психологическая")
 --Fields--
 - final String name
 --Constructors--
-Genre(String food)
+Genre(String name)
 --Methods--
+'do not forget about collisions:
+'do not return same object twice
+'it may cause some problems since objects would have the same link
 + static getRandomGenre() : Genre
 + getName() : String
+}
+
+enum Country{
+'some countries
+USSR("USSR")
+--Fields--
+- String name
+- int population
+- Person[] people
+--Constructors--
+Country(String name, int population, Person[] People)
+--Methods--
++makePeopleChoose: void
 }
 
 interface Readable {
@@ -42,38 +56,52 @@ read() : String
 
 class Book implements Readable {
 --Fields--
-String author
-String name
-Genre genre
-int year
-int pageCount
-int edition
-String about
-}
-
-abstract class People {
---Fields--
-String name
+'too many fields, maybe we should reduce it's number
+- String author
+- String title
+- Genre genre
+- int year
+- int edition
+- String about
 --Methods--
-getName() : String
-abstract whatYouBuy(List<Readable>)
-abstract choseBest(List<Readable>)
-abstract choseWorst(List<Readable>)
+'maybe we can store info about book just as String
+'and return it
++getInformation(): String
 }
 
-abstract class Publisher {
-}
 
-class ReadingWorld {
+abstract class Person {
 --Fields--
-String country
-int year
-HashMap<String,Integer> population
-People[] readingPeople
-Readable[] books
+- String name
+--Methods--
++ getName() : String
++ abstract whatYouBuy(List<Readable>): List<Readable>
++ abstract choseBest(List<Readable>): Readable
++ abstract choseWorst(List<Readable>): Readable
 }
 
-class TooMuchPeopleException extends RuntimeException {
+'dont think it should be abstract
+class Publisher {
+--Fields--
+- String name
+--Methods--
++ publish: String
+}
+
+class World {
+--Fields--
+- int year = 0
+- Country[] countries
+--Constructors--
+World(Country[] countries)
+--Methods--
+'this method takes country and invokes methods
+'whatyoubuy and choosebest/worst for all people in it
++ makeCountryChoose(Country country): void
++ getResults(): Book[]
+}
+
+class TooManyPeopleException extends RuntimeException {
 }
 
 class CountryDoesNotExistException extends Exception {
