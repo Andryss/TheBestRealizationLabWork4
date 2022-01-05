@@ -41,9 +41,24 @@ read() : String
 }
 
 class Book implements Readable {
+--Fields--
+String author
+String name
+Genre genre
+int year
+int pageCount
+int edition
+String about
 }
 
 abstract class People {
+--Fields--
+String name
+--Methods--
+getName() : String
+abstract whatYouBuy(List<Readable>)
+abstract choseBest(List<Readable>)
+abstract choseWorst(List<Readable>)
 }
 
 abstract class Publisher {
