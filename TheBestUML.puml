@@ -29,24 +29,33 @@ PSYCHOLOGIC("Психологическая")
 --Constructors--
 Genre(String name)
 --Methods--
-'do not forget about collisions:
-'do not return same object twice
-'it may cause some problems since objects would have the same link
+'dont understand "collision problem"
+'I think all is OK
 + static getRandomGenre() : Genre
 + getName() : String
 }
 
-enum Country{
-'some countries
-USSR("USSR")
+'i think it is bad idea to use ENUM here
+'Country should be class
+'but countryName should be enum (maybe inner enum?)
+'so we will create OUR country by using "add" method
+class Country{
 --Fields--
-- String name
+- CountryName name
 - int population
 - Person[] people
 --Constructors--
-Country(String name, int population, Person[] People)
+'this changes makes 1 Exception useless
+Country(CountryName name, int population)
+'in this constructor we create Person[population]
 --Methods--
-+makePeopleChoose: void
+'i think Publisher class should makePeopleChoice
++ (getters)
++ add(Person person) : void
+}
+
+enum CountryName {
+'just an idea
 }
 
 interface Readable {
@@ -56,17 +65,19 @@ read() : String
 
 class Book implements Readable {
 --Fields--
-'too many fields, maybe we should reduce it's number
+'delete year field
 - String author
 - String title
 - Genre genre
-- int year
 - int edition
 - String about
+--Constructors--
+Book()
 --Methods--
-'maybe we can store info about book just as String
-'and return it
-+getInformation(): String
+'there is the method, which mix all info
+'about book in one String and return it
++ read(): String
+'it is read, because Readable
 }
 
 
@@ -75,17 +86,19 @@ abstract class Person {
 - String name
 --Methods--
 + getName() : String
-+ abstract whatYouBuy(List<Readable>): List<Readable>
-+ abstract choseBest(List<Readable>): Readable
-+ abstract choseWorst(List<Readable>): Readable
++ abstract whatYouBuy(Readable[] readable): Readable[]
++ abstract choseBest(Readable[] readable): Readable
++ abstract choseWorst(Readable[] readable): Readable
 }
 
-'dont think it should be abstract
 class Publisher {
 --Fields--
 - String name
 --Methods--
-+ publish: String
+'i think it should be void but print all info in stdout
+'this method should ask all people in the World about Readable[]
++ publish(World, Readable[]): void
+- (some private help-methods)
 }
 
 class World {
@@ -95,15 +108,16 @@ class World {
 --Constructors--
 World(Country[] countries)
 --Methods--
-'this method takes country and invokes methods
-'whatyoubuy and choosebest/worst for all people in it
-+ makeCountryChoose(Country country): void
-+ getResults(): Book[]
+'i think publisher must ask persons
+'+ makeCountryChoose(Country country): void
+'+ getResults(): Book[]
++ (just getters)
 }
 
 class TooManyPeopleException extends RuntimeException {
 }
 
-class CountryDoesNotExistException extends Exception {
-}
+'useless exception
+'class CountryDoesNotExistException extends Exception {
+'}
 @enduml

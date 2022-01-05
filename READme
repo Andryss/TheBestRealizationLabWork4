@@ -1,13 +1,8 @@
 List of changes
-1) added class Country
-2) class Publisher is no longer abstract
-3) too many fields in class Book, maybe we should reduce their amount
-4) big changes in class ReadingWorld which is World now
-The main point of this class is to store countries in one place
-and invoke their methods.
-Also we should be able to get some results, so we need to actually store them somewhere.
-5) Some ideas:
-* But I cant think about something but hashmap, which I dont really want to use.
-* Maybe we should make method read in Readable void-type, and create some counter inside
- each Book which will be increased in read
-* There also is some strange idea: to make some books more interesting for people depending on the current year in the world
+1) make Country class (not enum)
+2) i think World must be Singleton pattern
+3) add enum CountryName (just idea)
+4) i think that Publisher should invoke Person methods
+ (or i don't understand your idea)
+5) we have 1 useless exception (CountryDoesNotExistException)
+6) beauty-changes
