@@ -1,8 +1,7 @@
 List of changes
-1) make Country class (not enum)
-2) i think World must be Singleton pattern
-3) add enum CountryName (just idea)
-4) i think that Publisher should invoke Person methods
- (or i don't understand your idea)
-5) we have 1 useless exception (CountryDoesNotExistException)
-6) beauty-changes
+1) BIG COUNTY CHANGES (without meetings):
+    1.1) Country is enum now (again)
+    1.2) add placeInitialization method
+    1.3) so add new Exception
+2) comment Exceptions
+3) idea: we need a Generator class, which will create random books or people

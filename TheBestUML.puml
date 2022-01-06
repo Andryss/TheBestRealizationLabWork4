@@ -23,7 +23,7 @@ DETECTIVE("детектив")
 DRAMA("драма")
 FANTASY("фантастика")
 HISTORICLAL("историческая книга")
-PSYCHOLOGIC("Психологическая")
+PSYCHOLOGIC("психологическая книга")
 --Fields--
 - final String name
 --Constructors--
@@ -35,27 +35,25 @@ Genre(String name)
 + getName() : String
 }
 
-'i think it is bad idea to use ENUM here
-'Country should be class
-'but countryName should be enum (maybe inner enum?)
-'so we will create OUR country by using "add" method
-class Country{
+'i have an idea how to create Person[]
+enum Country{
+USSR("USSR",290_938_469)
+...
+(here will be more countries)
 --Fields--
-- CountryName name
+- String name
 - int population
+'persons-heap :)
 - Person[] people
 --Constructors--
-'this changes makes 1 Exception useless
-Country(CountryName name, int population)
-'in this constructor we create Person[population]
+Country(String name, int population)
 --Methods--
-'i think Publisher class should makePeopleChoice
-+ (getters)
+'in this method we will create Person[]
+'name of method must be better
++ placeInitialization() : void
+'in this method we will append Person in Persons-heap
 + add(Person person) : void
-}
-
-enum CountryName {
-'just an idea
++ (getters)
 }
 
 interface Readable {
@@ -115,6 +113,11 @@ World(Country[] countries)
 }
 
 class TooManyPeopleException extends RuntimeException {
+'we want to have more Persons than Person[] can contain
+}
+
+class PeopleDoesNotCreateException extends RuntimeException {
+'we want to add Person and Person[] is null (not created)
 }
 
 'useless exception
