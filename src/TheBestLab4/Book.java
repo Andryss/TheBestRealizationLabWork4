@@ -20,7 +20,7 @@ public enum Book implements Readable{
     }
 
     public String read(){
-        return getTitle() + " автора " + getAuthor() + " издание " + getEdition() + " в жанре " + getGenre().getName() + getAbout();
+        return "\"" + getTitle() + "\" в жанре \"" + getGenre().getName() + "\" автора " + getAuthor() + " (издание " + getEdition() + ")" + getAbout();
     }
 
     public Genre getGenre() {

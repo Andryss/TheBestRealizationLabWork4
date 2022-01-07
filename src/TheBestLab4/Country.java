@@ -27,28 +27,12 @@ public enum Country {
 
     private void immigration() throws TooManyPeopleException {
         for (int i = 0; i < population + (int) (Math.random() * 1.125); ++i){
-            int curLengthGenres = (int) (Math.random() * 3 + 1);
-            Genre[] curGenres = new Genre[curLengthGenres];
-            int cnt = 0;
-            while (true){
-                Genre curGenre = Genre.getRandomGenre();
-                if (!isIn(curGenre, curGenres)){
-                    curGenres[cnt] = curGenre;
-                    cnt+=1;
-                    if (cnt == curLengthGenres){
-                        break;
-                    }
-                }
+            Person person = Person.getRandomPerson();
+            try {
+                people[i] = person;
+            } catch (ArrayIndexOutOfBoundsException e){
+                throw new TooManyPeopleException(this, person);
             }
-            immigrate(new Person(Person.getRandomName(), curGenres), i);
-        }
-    }
-
-    private void immigrate(Person person, int index) throws TooManyPeopleException {
-        try {
-            people[index] = person;
-        } catch (ArrayIndexOutOfBoundsException e){
-            throw new TooManyPeopleException(this, person);
         }
     }
 
@@ -64,16 +48,5 @@ public enum Country {
 
     public Person[] getPeople() {
         return people;
-    }
-
-    private boolean isIn(Genre o, Genre[] os){
-        boolean fl = false;
-        for (Genre o1: os){
-            if (o1 == o){
-                fl = true;
-                break;
-            }
-        }
-        return fl;
     }
 }

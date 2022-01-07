@@ -30,13 +30,12 @@ PSYCHOLOGIC("психологическая книга");
 --Constructors--
 Genre(String name)
 --Methods--
-'dont understand "collision problem"
-'I think all is OK
 + static getRandomGenre() : Genre
++ static getRandomGenres() : Genre[]
 + getName() : String
 }
 
-'i have an idea how to create TheBestLab4.Person[]
+
 enum Country{
 USSR("СССР", 100),
 FRANCE("Франция", 100),
@@ -52,10 +51,10 @@ NORWAY("Норвегия", 100);
 Country(String name, int population)
 --Methods--
 - immigration() : void
-- immigrate(Person person, int index) : void
 + getName(): String
 + getPopulation(): int
 + isAnarchy(): boolean
++ getPeople() : Person[]
 }
 
 interface Readable {
@@ -65,6 +64,7 @@ interface Readable {
 read() : String
 }
 
+'REMIND TO MAKE IT CLASS
 enum Book implements Readable {
 HARRYPOTTER(),
 THESTAINLESSRAT();
@@ -91,9 +91,10 @@ class Person {
 - String name
 - Genre[] favouriteGenres
 --Methods--
++ static getRandomName(): String
++ static getRandomPerson() : Person
 + getName() : String
 + getFavouriteGenres(): Genre[]
-+ static getRandomName(): String
 + whatYouBuy(Readable[] readable): Readable[]
 + choseBest(Readable[] readable): Readable
 + choseWorst(Readable[] readable): Readable
@@ -150,6 +151,7 @@ class TooManyPeopleException extends Exception {
 + getMessage() : String
 }
 
+'useless exception
 class PeopleWereNotCreateException extends RuntimeException {
 'we want to add TheBestLab4.Person and TheBestLab4.Person[] is null (not created)
 --Fields--

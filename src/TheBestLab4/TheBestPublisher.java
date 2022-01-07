@@ -32,7 +32,7 @@ public class TheBestPublisher extends Publisher {
 
     public void publish(World world, Readable[] readables){
         survey(world, readables);
-        Arrays.sort(readables, (o1, o2) -> rating.get(o1) - rating.get(o2));
+        Arrays.sort(readables, (o1, o2) -> rating.get(o2) - rating.get(o1));
         System.out.println("Издательская компания " + getName() + " представила данные по книжным предпочтениям людей со всего мира в " + world.getYear() + ":");
         for (int i = 0; i < Math.min(3, readables.length);i++){
             Readable readable = readables[i];
@@ -41,7 +41,7 @@ public class TheBestPublisher extends Publisher {
                 System.out.println("Было продано ровно " + rating.get(readable) + " книг.");
             }
             else if (i == 1){
-                System.out.println("Почетное второе место занимает книга " + readable.read() + ", проданная в количестве " + rating.get(readable) + " экземпляров.");
+                System.out.println("Почетное второе место занимает книга " + readable.read() + ", \nпроданная в количестве " + rating.get(readable) + " экземпляров.");
             } else {
                 System.out.println("Тройку лидеров замыкает " + readable.read() + ".");
                 System.out.println("Новинку купили более " + (rating.get(readable) - 1) + "раз.");

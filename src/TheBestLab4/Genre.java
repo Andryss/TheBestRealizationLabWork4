@@ -23,4 +23,29 @@ public enum Genre {
         Genre[] genres = Genre.values();
         return genres[(int) (Math.random() * genres.length)];
     }
+
+    public static Genre[] getRandomGenres(){
+        int curLengthGenres = (int) (Math.random() * 3 + 1);
+        Genre[] curGenres = new Genre[curLengthGenres];
+        int cnt = 0;
+        while (cnt != curLengthGenres){
+            Genre curGenre = Genre.getRandomGenre();
+            if (!Genre.isIn(curGenre, curGenres)){
+                curGenres[cnt] = curGenre;
+                cnt++;
+            }
+        }
+        return curGenres;
+    }
+
+    public static boolean isIn(Genre o, Genre[] os){
+        boolean fl = false;
+        for (Genre o1: os){
+            if (o1 == o){
+                fl = true;
+                break;
+            }
+        }
+        return fl;
+    }
 }

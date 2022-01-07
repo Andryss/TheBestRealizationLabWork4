@@ -14,6 +14,10 @@ public class Person {
         return names[(int) (names.length * Math.random())];
     }
 
+    public static Person getRandomPerson() {
+        return new Person(Person.getRandomName(), Genre.getRandomGenres());
+    }
+
     public Genre[] getFavouriteGenres() {
         return favouriteGenres;
     }

@@ -1,6 +1,9 @@
 List of changes
-1) TooManyPeopleException now extends from Exception
-2) each TheBestLab4.Person now have list of favourite Genres
-3) Book is now enum
-4) Person is not abstract
-5) written the first version of all the classes except Publisher2, 3 and PeopleWereNotCreatedExeception
+1) add getRandomGenres in Genre
+2) add getRandomPerson in Person
+3) delete immigrate(person, index) from Country
+ (immigration is much easily now)
+4) sorting in TheBestPublisher is correct now
+And:
+5) Beauty-changes (some println changes)
+PeopleWereNotCreatedException is useless now
