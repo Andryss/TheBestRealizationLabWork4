@@ -1,4 +1,6 @@
 List of changes
-1) make Publisher abstract
-2) add Publisher's children
-3) add Fields and Methods in Exceptions
+1) TooManyPeopleException now extends from Exception
+2) each TheBestLab4.Person now have list of favourite Genres
+3) Book is now enum
+4) Person is not abstract
+5) written the first version of all the classes except Publisher2, 3 and PeopleWereNotCreatedExeception

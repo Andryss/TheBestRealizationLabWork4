@@ -21,9 +21,10 @@ ADVENTURE("приключенческая книга")
 VISUAL_NOVEL("визуальная новелла")
 DETECTIVE("детектив")
 DRAMA("драма")
-FANTASY("фантастика")
-HISTORICLAL("историческая книга")
-PSYCHOLOGIC("психологическая книга")
+FANTASY("фэнтези"),
+SCIENCE_FICTION("научная фантастика"),
+HISTORICAL("историческая книга"),
+PSYCHOLOGIC("психологическая книга");
 --Fields--
 - final String name
 --Constructors--
@@ -35,37 +36,39 @@ Genre(String name)
 + getName() : String
 }
 
-'i have an idea how to create Person[]
+'i have an idea how to create TheBestLab4.Person[]
 enum Country{
-USSR("USSR",290_938_469)
-...
-(here will be more countries)
+USSR("СССР", 100),
+FRANCE("Франция", 100),
+GERMANY("Германия", 100),
+NORWAY("Норвегия", 100);
 --Fields--
 - String name
 - int population
+- boolean anarchyFlag
 'persons-heap :)
 - Person[] people
 --Constructors--
 Country(String name, int population)
 --Methods--
-'in this method we will create Person[]
-'name of method must be better
-+ placeInitialization() : void
-'in this method we will append Person in Persons-heap
-+ add(Person person) : void
-+ (getters)
+- immigration() : void
+- immigrate(Person person, int index) : void
++ getName(): String
++ getPopulation(): int
++ isAnarchy(): boolean
 }
 
 interface Readable {
 --Methods--
 'this method will return info about readable
-'so Book.read() should return String with author, title, genre, about fields
+'so TheBestLab4.Book.read() should return String with author, title, genre, about fields
 read() : String
 }
 
-class Book implements Readable {
+enum Book implements Readable {
+HARRYPOTTER(),
+THESTAINLESSRAT();
 --Fields--
-'delete year field
 - String author
 - String title
 - Genre genre
@@ -74,22 +77,26 @@ class Book implements Readable {
 --Constructors--
 Book(String author, String title, Genre genre, int edition, String about)
 --Methods--
-'there is the method, which mix all info
-'about book in one String and return it
 + read(): String
-'it is read, because Readable
-+ (getters)
++ getGenre(): Genre
++ getEdition(): int
++ getAbout(): String
++ getAuthor(): String
++ getTitle(): String
 }
 
-
-abstract class Person {
+class Person {
 --Fields--
+- final static String[] names;
 - String name
+- Genre[] favouriteGenres
 --Methods--
 + getName() : String
-+ abstract whatYouBuy(Readable[] readable): Readable[]
-+ abstract choseBest(Readable[] readable): Readable
-+ abstract choseWorst(Readable[] readable): Readable
++ getFavouriteGenres(): Genre[]
++ static getRandomName(): String
++ whatYouBuy(Readable[] readable): Readable[]
++ choseBest(Readable[] readable): Readable
++ choseWorst(Readable[] readable): Readable
 }
 
 abstract class Publisher {
@@ -98,16 +105,19 @@ abstract class Publisher {
 --Constructors--
 Publisher(String name)
 --Methods--
-'i think it should be void but print all info in stdout
-'this method should ask all people in the World about Readable[]
-+ publish(World, Readable[]): void
-- (some private help-methods)
-- (abstract method)
++ abstract publish(World world, Readable[] readables): void
++ getName(): String
 }
 
-'names must be better
-class Publisher1 extends Publisher {
-'publisher which invokes whatYouBuy method
+
+class TheBestPublisher extends Publisher {
+--Fields--
+- Map<Readable, Integer> rating
+--Constructors--
+TheBestPublisher(String name)
+--Methods--
++ publish(World world, Readable[] readables): void
+- survey(World world, Readable[], readables): void
 }
 
 class Publisher2 extends Publisher {
@@ -125,23 +135,23 @@ class World {
 --Constructors--
 World(Country[] countries)
 --Methods--
-'i think publisher must ask persons
-'+ makeCountryChoose(Country country): void
-'+ getResults(): Book[]
-+ (just getters)
 }
 
-class TooManyPeopleException extends RuntimeException {
-'we want to have more Persons than Person[] can contain
+class TooManyPeopleException extends Exception {
+'we want to have more Persons than TheBestLab4.Person[] can contain
 --Fields--
 - Country country
+' The idea is that we can continue with our program, but
+' if we have more People than possible the anarchy starts in country
+' and we can't ask people in it about books
+' funny)))
 - Person person
 --Methods--
 + getMessage() : String
 }
 
-class PeopleDoesNotCreateException extends RuntimeException {
-'we want to add Person and Person[] is null (not created)
+class PeopleWereNotCreateException extends RuntimeException {
+'we want to add TheBestLab4.Person and TheBestLab4.Person[] is null (not created)
 --Fields--
 - Country country
 --Methods--
