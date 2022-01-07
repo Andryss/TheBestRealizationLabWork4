@@ -58,6 +58,8 @@ Country(String name, int population)
 
 interface Readable {
 --Methods--
+'this method will return info about readable
+'so Book.read() should return String with author, title, genre, about fields
 read() : String
 }
 
@@ -70,12 +72,13 @@ class Book implements Readable {
 - int edition
 - String about
 --Constructors--
-Book()
+Book(String author, String title, Genre genre, int edition, String about)
 --Methods--
 'there is the method, which mix all info
 'about book in one String and return it
 + read(): String
 'it is read, because Readable
++ (getters)
 }
 
 
@@ -89,14 +92,30 @@ abstract class Person {
 + abstract choseWorst(Readable[] readable): Readable
 }
 
-class Publisher {
+abstract class Publisher {
 --Fields--
 - String name
+--Constructors--
+Publisher(String name)
 --Methods--
 'i think it should be void but print all info in stdout
 'this method should ask all people in the World about Readable[]
 + publish(World, Readable[]): void
 - (some private help-methods)
+- (abstract method)
+}
+
+'names must be better
+class Publisher1 extends Publisher {
+'publisher which invokes whatYouBuy method
+}
+
+class Publisher2 extends Publisher {
+'publisher which invokes choseBest method
+}
+
+class Publisher3 extends Publisher {
+'publisher which invokes choseWorst method
 }
 
 class World {
@@ -114,13 +133,19 @@ World(Country[] countries)
 
 class TooManyPeopleException extends RuntimeException {
 'we want to have more Persons than Person[] can contain
+--Fields--
+- Country country
+- Person person
+--Methods--
++ getMessage() : String
 }
 
 class PeopleDoesNotCreateException extends RuntimeException {
 'we want to add Person and Person[] is null (not created)
+--Fields--
+- Country country
+--Methods--
++ getMessage() : String
 }
 
-'useless exception
-'class CountryDoesNotExistException extends Exception {
-'}
 @enduml
