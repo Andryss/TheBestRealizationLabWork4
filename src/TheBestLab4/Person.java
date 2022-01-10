@@ -52,10 +52,58 @@ public class Person {
     }
 
     public Readable chooseTheBest(Readable[] readables){
+        Readable[] whatIChoose;
+        int cnt = 0;
+        for (Readable readable: readables){
+            for (Genre genre: favouriteGenres){
+                if (readable.read().contains(genre.getName())){
+                    cnt++;
+                    break;
+                }
+            }
+        }
+        whatIChoose = new Readable[cnt];
+        cnt = 0;
+        for (Readable readable: readables){
+            for (Genre genre: favouriteGenres){
+                if (readable.read().contains(genre.getName())){
+                    whatIChoose[cnt] = readable;
+                    cnt++;
+                    break;
+                }
+            }
+        }
+        if (whatIChoose.length > 0) {
+            return whatIChoose[(int)(Math.random() * whatIChoose.length)];
+        }
         return null;
     }
 
     public Readable chooseTheWorst(Readable[] readables){
+        Readable[] whatIChoose;
+        int cnt = 0;
+        for (Readable readable: readables){
+            for (Genre genre: favouriteGenres){
+                if (!readable.read().contains(genre.getName())){
+                    cnt++;
+                    break;
+                }
+            }
+        }
+        whatIChoose = new Readable[cnt];
+        cnt = 0;
+        for (Readable readable: readables){
+            for (Genre genre: favouriteGenres){
+                if (!readable.read().contains(genre.getName())){
+                    whatIChoose[cnt] = readable;
+                    cnt++;
+                    break;
+                }
+            }
+        }
+        if (whatIChoose.length > 0) {
+            return whatIChoose[(int)(Math.random() * whatIChoose.length)];
+        }
         return null;
     }
 

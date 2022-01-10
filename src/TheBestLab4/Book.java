@@ -1,10 +1,6 @@
 package TheBestLab4;
 
-public enum Book implements Readable{
-    HARRYPOTTER("Джоан Роулинг", "Гарри Поттер", Genre.ADVENTURE, 3, ", повествующая о мальчике, который выжил"),
-    THESTAINLESSSTEELRAT("Гарри Гаррисон", "Стальная крыса",Genre.SCIENCE_FICTION, 1, " - это серия научно-фантастических юмористических произведений Гарри Гаррисона (в основном, романов) о похождениях в отдалённом будущем ловкого галактического мошенника Джеймса Боливара Ди Гриза");
-
-
+public class Book implements Readable{
     private String author;
     private String title;
     private Genre genre;

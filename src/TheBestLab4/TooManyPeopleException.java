@@ -31,6 +31,7 @@ public class TooManyPeopleException extends Exception {
         super(message, cause, enableSuppression, writableStackTrace);
     }
 
+    @Override
     public String getMessage(){
         return "В стране " + country.getName() + " началась анархия, из-за перенаселения, вызванного рождением " + person.getName() + ". Теперь " + country.getName() + " занята более важными делами.";
     }

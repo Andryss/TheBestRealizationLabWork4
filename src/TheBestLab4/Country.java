@@ -1,12 +1,10 @@
 package TheBestLab4;
 
-import java.util.Objects;
-
 public enum Country {
-    USSR("СССР", 100),
-    FRANCE("ФРАНЦИЯ", 100),
-    GERMANY("ГЕРМАНИЯ", 100),
-    NORWAY("НОРВЕГИЯ", 100);
+    USSR("СССР", 1_000_000),
+    FRANCE("ФРАНЦИЯ", 1_000_000),
+    GERMANY("ГЕРМАНИЯ", 1_000_000),
+    NORWAY("НОРВЕГИЯ", 1_000_000);
 
     private String name;
     private int population;
@@ -16,12 +14,17 @@ public enum Country {
     Country(String name, int population){
         this.name = name;
         this.population = population;
-        people = new Person[population];
-        try {
-            immigration();
-        } catch (TooManyPeopleException e){
-            anarchyFlag = true;
-            System.out.println(e.getMessage());
+    }
+
+    public void initializationRandom() {
+        if (people == null) {
+            people = new Person[population];
+            try {
+                immigration();
+            } catch (TooManyPeopleException e){
+                anarchyFlag = true;
+                System.out.println(e.getMessage());
+            }
         }
     }
 
@@ -47,6 +50,9 @@ public enum Country {
     }
 
     public Person[] getPeople() {
+        if (isAnarchy()) {
+            throw new CountryIsAnarchyException(this);
+        }
         return people;
     }
 }

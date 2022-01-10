@@ -37,19 +37,21 @@ Genre(String name)
 
 
 enum Country{
-USSR("СССР", 100),
-FRANCE("Франция", 100),
-GERMANY("Германия", 100),
-NORWAY("Норвегия", 100);
+USSR("СССР", 1_000_000),
+FRANCE("Франция", 1_000_000),
+GERMANY("Германия", 1_000_000),
+NORWAY("Норвегия", 1_000_000);
 --Fields--
 - String name
 - int population
-- boolean anarchyFlag
 'persons-heap :)
 - Person[] people
+- boolean anarchyFlag
 --Constructors--
 Country(String name, int population)
 --Methods--
+'method, which invoke immigration method
++ initializationRandom() : void
 - immigration() : void
 + getName(): String
 + getPopulation(): int
@@ -110,52 +112,81 @@ Publisher(String name)
 + getName(): String
 }
 
-
-class TheBestPublisher extends Publisher {
+'publisher, which invokes whatYouBuy
+class PurchasingPublisher extends Publisher {
 --Fields--
-- Map<Readable, Integer> rating
+'it doesn't need fields
 --Constructors--
 TheBestPublisher(String name)
 --Methods--
+- survey(Country country, Readable[], readables): Map<Readable, Integer>
+- printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating): void
 + publish(World world, Readable[] readables): void
-- survey(World world, Readable[], readables): void
 }
 
-class Publisher2 extends Publisher {
+abstract class ChoosingPublisher extends Publisher {
+--Fields--
+--Constructors--
+ChoosingPublisher(String name)
+--Methods--
+# abstract invokePersonMethod(Person person, Readable[] readables)
+- survey(Country country, Readable[], readables): Map<Readable, Integer>
+# abstract printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating): void
++ publish(World world, Readable[] readables): void
+}
+
 'publisher which invokes choseBest method
+class ChoosingBestPublisher extends ChoosingPublisher {
+--Fields--
+--Constructors--
+ChoosingBestPublisher(String name)
+--Methods--
+# invokePersonMethod(Person person, Readable[] readables) : Readable
+# printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating) : void
 }
 
-class Publisher3 extends Publisher {
 'publisher which invokes choseWorst method
+class ChoosingWorstPublisher extends ChoosingPublisher {
+--Fields--
+--Constructors--
+ChoosingBestPublisher(String name)
+--Methods--
+# invokePersonMethod(Person person, Readable[] readables) : Readable
+# printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating) : void
 }
 
 class World {
 --Fields--
-- int year = 0
+- int year
 - Country[] countries
 --Constructors--
-World(Country[] countries)
+'some changes here
+World(int year, Country[] countries)
 --Methods--
++ getCountries() : Country[]
++ getYear() : int
 }
 
 class TooManyPeopleException extends Exception {
-'we want to have more Persons than TheBestLab4.Person[] can contain
+'there may be overpopulation in country
 --Fields--
 - Country country
-' The idea is that we can continue with our program, but
-' if we have more People than possible the anarchy starts in country
-' and we can't ask people in it about books
-' funny)))
 - Person person
+--Constructors--
+TooManyPeopleException(Country country, Person person)
+(other constructors)
 --Methods--
 + getMessage() : String
 }
 
-'useless exception
-class PeopleWereNotCreateException extends RuntimeException {
-'we want to add TheBestLab4.Person and TheBestLab4.Person[] is null (not created)
+'new exception
+class CountyIsAnarchyException extends RuntimeException {
+'County can't return People[] if anarchy
 --Fields--
 - Country country
+--Constructors--
+CountyIsAnarchyException(Country country)
+(other constructors)
 --Methods--
 + getMessage() : String
 }
