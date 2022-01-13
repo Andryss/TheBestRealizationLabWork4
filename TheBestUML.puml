@@ -53,6 +53,8 @@ Country(String name, int population)
 'method, which invoke immigration method
 + initializationRandom() : void
 - immigration() : void
+'method, which set up people (setter)
++ initialization(Person[] people) : void
 + getName(): String
 + getPopulation(): int
 + isAnarchy(): boolean
@@ -66,10 +68,7 @@ interface Readable {
 read() : String
 }
 
-'REMIND TO MAKE IT CLASS
-enum Book implements Readable {
-HARRYPOTTER(),
-THESTAINLESSRAT();
+class Book implements Readable {
 --Fields--
 - String author
 - String title
@@ -187,6 +186,18 @@ class CountyIsAnarchyException extends RuntimeException {
 --Constructors--
 CountyIsAnarchyException(Country country)
 (other constructors)
+--Methods--
++ getMessage() : String
+}
+
+'new exception
+class CountryInitializationException extends RuntimeException {
+'Country can't set People[] if user gives wrong length of People[]
+--Fields--
+- Country country
+- Person[] people
+--Constructors--
+CountryInitializationException(Country country, Person[] people)
 --Methods--
 + getMessage() : String
 }

@@ -1,7 +1,7 @@
 List of changes:
 
-1) add initializationRandom method in Country, which create People[population]
- (idea is to create new initialization method, which will use no random)
+1) add initializationRandom method in Country, which randomly create People[population]
+   add initialization method, which is setter
 
 2) change World constructor (the world invokes Country init method now)
 
@@ -16,5 +16,7 @@ List of changes:
 
 7) add new CountryIsAnarchyException
  (Country can't return People[] if anarchy)
+   add new CountryInitializationException
+ (Country can't set People[] if user gives wrong length of People[])
 
 8) puml changes

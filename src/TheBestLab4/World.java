@@ -8,7 +8,9 @@ public class World {
     public World(int year, Country[] countries){
         this.year = year;
         for (Country country: countries) {
-            country.initializationRandom();
+            if (country.getPeople() == null) {
+                country.initializationRandom();
+            }
         }
         this.countries = countries;
     }

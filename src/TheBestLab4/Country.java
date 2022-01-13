@@ -17,14 +17,12 @@ public enum Country {
     }
 
     public void initializationRandom() {
-        if (people == null) {
-            people = new Person[population];
-            try {
-                immigration();
-            } catch (TooManyPeopleException e){
-                anarchyFlag = true;
-                System.out.println(e.getMessage());
-            }
+        people = new Person[population];
+        try {
+            immigration();
+        } catch (TooManyPeopleException e){
+            anarchyFlag = true;
+            System.out.println(e.getMessage());
         }
     }
 
@@ -37,6 +35,13 @@ public enum Country {
                 throw new TooManyPeopleException(this, person);
             }
         }
+    }
+
+    public void initialization(Person[] people) {
+        if (people.length != population) {
+            throw new CountryInitializationException(this, people);
+        }
+        this.people = people;
     }
 
     public String getName() {return name;}
