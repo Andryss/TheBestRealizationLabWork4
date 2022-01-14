@@ -9,7 +9,8 @@ public enum Genre {
     SCIENCE_FICTION("Научная фантастика"),
     HISTORICAL("Историческая книга"),
     PSYCHOLOGICAL("Психологическая книга"),
-    PULPFICTION("Бульварное чтиво");
+    PULPFICTION("Бульварное чтиво"),
+    NOVEL("Роман");
 
     private String name;
 
@@ -47,5 +48,10 @@ public enum Genre {
             }
         }
         return fl;
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

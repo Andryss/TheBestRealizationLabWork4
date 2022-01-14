@@ -1,22 +1,5 @@
 List of changes:
-
-1) add initializationRandom method in Country, which randomly create People[population]
-   add initialization method, which is setter
-
-2) change World constructor (the world invokes Country init method now)
-
-3) add some private-help methods in TheBestPublisher, which is PurchasingPublisher now
- (publisher count rating in each country in the World and print it now)
-
-4) add abstract ChoosingPublisher class
-
-5) add non-abstract ChoosingBestPublisher and ChoosingWorstPublisher classes
-
-6) add chooseTheBest and chooseTheWorst realization
-
-7) add new CountryIsAnarchyException
- (Country can't return People[] if anarchy)
-   add new CountryInitializationException
- (Country can't set People[] if user gives wrong length of People[])
-
-8) puml changes
+1) delete edition-field from Book (useless field)
+2) add new Book constructor (without about-field)
+3) set up Main method
+ (remind: we need inner classes and overrided Object methods)

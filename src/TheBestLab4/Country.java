@@ -1,7 +1,7 @@
 package TheBestLab4;
 
 public enum Country {
-    USSR("СССР", 1_000_000),
+    RUSSIA("Россия", 1_000_000),
     FRANCE("ФРАНЦИЯ", 1_000_000),
     GERMANY("ГЕРМАНИЯ", 1_000_000),
     NORWAY("НОРВЕГИЯ", 1_000_000);

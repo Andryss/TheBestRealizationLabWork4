@@ -40,13 +40,13 @@ public class PurchasingPublisher extends Publisher {
             Readable readable = readables[i];
             if (i == 0){
                 System.out.println("- Абсолютным лидером продаж стала книга " + readable.read() + ".");
-                System.out.println("Было продано ровно " + rating.get(readable) + " книг.");
+                System.out.println("Было продано ровно " + rating.get(readable)/1000 + " тыс. книг.");
             }
             else if (i == 1){
-                System.out.println("- Почетное второе место занимает книга " + readable.read() + ", \nпроданная в количестве " + rating.get(readable) + " экземпляров.");
+                System.out.println("- Почетное второе место занимает книга " + readable.read() + ", \nпроданная в количестве " + rating.get(readable)/1000 + " тыс. экземпляров.");
             } else {
                 System.out.println("- Тройку лидеров замыкает " + readable.read() + ".");
-                System.out.println("Новинку купили более " + (rating.get(readable) - 1) + "раз.");
+                System.out.println("Новинку купили более " + (rating.get(readable) - 1)/1000 + " тыс. раз.");
             }
         }
     }
