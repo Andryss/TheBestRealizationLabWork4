@@ -1,6 +1,6 @@
 package TheBestLab4;
 
-public class CountryInitializationException extends Exception {
+public class CountryInitializationException extends RuntimeException {
     String country;
     private int population;
 

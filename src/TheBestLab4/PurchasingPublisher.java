@@ -1,6 +1,5 @@
 package TheBestLab4;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,7 +9,7 @@ public class PurchasingPublisher extends Publisher {
         super(name);
     }
 
-    private Map<Readable, Integer> survey(Country country, Readable[] readables) {
+    protected Map<Readable, Integer> surveyCountry(Country country, Readable[] readables) {
         Map<Readable, Integer> rating = new HashMap<>();
 
         for (Readable readable : readables) {
@@ -28,14 +27,7 @@ public class PurchasingPublisher extends Publisher {
         return rating;
     }
 
-    private void printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating) {
-        Arrays.sort(readables, (o1, o2) -> rating.get(o2) - rating.get(o1));
-
-        System.out.println("В стране " + country.getName() + ":");
-        if (country.isAnarchy()) {
-            System.out.println("*смеется по-анархически*");
-            return;
-        }
+    protected void printResult(Readable[] readables, Map<Readable, Integer> rating) {
         for (int i = 0; i < Math.min(3, readables.length);i++){
             Readable readable = readables[i];
             if (i == 0){
@@ -51,12 +43,17 @@ public class PurchasingPublisher extends Publisher {
         }
     }
 
-    public void publish(World world, Readable[] readables){
-        System.out.println("Издательская компания " + getName() + " представила данные по книжным предпочтениям людей в разных странах в " + world.getYear() + " году.");
-
-        for (Country country: world.getCountries()) {
-            Map<Readable, Integer> rating = survey(country, readables);
-            printCountryResult(country, readables, rating);
+    public void publish(World world, Readable[] readables, PublishOption option){
+        if (option == PublishOption.IN_EACH_COUNTRY) {
+            System.out.println("Издательская компания " + getName() + " представила данные по книжным предпочтениям людей в разных странах в " + world.getYear() + " году.");
+            for (Country country: world.getCountries()) {
+                Map<Readable, Integer> rating = surveyCountry(country, readables);
+                printCountryResult(country, readables, rating);
+            }
+        } else if (option == PublishOption.ALL_AROUND_THE_WORLD) {
+            System.out.println("Издательская компания " + getName() + " представила данные по книжным предпочтениям людей по всему миру в " + world.getYear() + " году:");
+            Map<Readable, Integer> rating = surveyWorld(world, readables);
+            printWorldResult(readables, rating);
         }
     }
 }

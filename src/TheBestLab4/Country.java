@@ -20,13 +20,8 @@ public class Country {
     static class CountryFactory{
 
         public static Country initializationRandom(String name, int population) {
-            try {
-                if (population > MAX_POPULATION) {
-                    throw new CountryInitializationException(name, population);
-                }
-            } catch (CountryInitializationException e){
-                System.out.println(e.getMessage());
-                return null;
+            if (population > MAX_POPULATION) {
+                throw new CountryInitializationException(name, population);
             }
             Country thisCountry = new Country(name, population);
             thisCountry.people = new Person[population];
@@ -50,27 +45,12 @@ public class Country {
             }
         }
 
-        public static Country initialization(String name, int population) {
-            try {
-                if (population > MAX_POPULATION) {
-                    throw new CountryInitializationException(name, population);
-                }
-            } catch (CountryInitializationException e){
-                System.out.println(e.getMessage());
-                return null;
+        public static Country initialization(String name, Person[] people) {
+            if (people.length > MAX_POPULATION) {
+                throw new CountryInitializationException(name, people.length);
             }
-            Country thisCountry = new Country(name, population);
-            for(int i = 0; i < thisCountry.population; i++){
-                if (i < 163_000) {
-                    thisCountry.people[i] = new Person("Любитель психологии",new Genre[]{Genre.PSYCHOLOGICAL});
-                } else if (i < 163_000 + 92_000) {
-                    thisCountry.people[i] = new Person("Любитель детективов",new Genre[]{Genre.DETECTIVE});
-                } else if (i < 163_000 + 92_000 + 71_000 + 1) {
-                    thisCountry.people[i] = new Person("Любитель романов",new Genre[]{Genre.NOVEL});
-                } else {
-                    thisCountry.people[i] = new Person("Нелюбитель",new Genre[]{});
-                }
-            }
+            Country thisCountry = new Country(name, people.length);
+            thisCountry.people = people;
             return thisCountry;
         }
     }
@@ -101,7 +81,7 @@ public class Country {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Country country = (Country) o;
-        return population == country.population && anarchyFlag == country.anarchyFlag && Objects.equals(name, country.name) && Arrays.equals(people, country.people);
+        return population == country.population && anarchyFlag == country.anarchyFlag && name.equals(country.name) && Arrays.equals(people, country.people);
     }
 
     @Override

@@ -7,28 +7,14 @@ public class World {
 
     private int year;
     private Country[] countries;
+    private static final World WORLD = new World();
 
-    public World(int year, Country[] countries){
-        this.year = year;
-        this.countries = validCountries(countries);
-    }
+    private World() {}
 
-    private Country[] validCountries(Country[] countries){
-        int numberOfCountries = 0;
-        for (Country country: countries){
-            if (country != null){
-                numberOfCountries++;
-            }
-        }
-        Country[] thisCountries = new Country[numberOfCountries];
-        int pointer = 0;
-        for (Country country: countries){
-            if (country != null){
-                thisCountries[pointer] = country;
-                pointer++;
-            }
-        }
-        return thisCountries;
+    public static World newInstance(int year, Country[] countries){
+        WORLD.year = year;
+        WORLD.countries = countries;
+        return WORLD;
     }
 
     public Country[] getCountries() {

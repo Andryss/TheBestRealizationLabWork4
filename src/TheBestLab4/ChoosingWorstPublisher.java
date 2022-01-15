@@ -1,6 +1,5 @@
 package TheBestLab4;
 
-import java.util.Arrays;
 import java.util.Map;
 
 public class ChoosingWorstPublisher extends ChoosingPublisher {
@@ -15,14 +14,7 @@ public class ChoosingWorstPublisher extends ChoosingPublisher {
     }
 
     @Override
-    protected void printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating) {
-        Arrays.sort(readables, (o1, o2) -> rating.get(o2) - rating.get(o1));
-
-        System.out.println("В стране " + country.getName() + ":");
-        if (country.isAnarchy()) {
-            System.out.println("*смеется по-анархически*");
-            return;
-        }
+    protected void printResult(Readable[] readables, Map<Readable, Integer> rating) {
         for (int i = 0; i < Math.min(3, readables.length);i++){
             Readable readable = readables[i];
             if (i == 0){

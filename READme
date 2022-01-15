@@ -1,13 +1,14 @@
 List of changes:
-1) BIGGGG changes in Country:
-    * it's not enum
-    * added inner static class CountryFactory (Code for initialization from Main copypasted there)
-    * since CountryInitializationException extends Exception now, added some try-catches blocks in CountryFactory
-2) added countries validation in World (if population of Country > MAX_POPULATION initializer returns null)
-3) Main looks a lot prettier now))
-4) Changes in puml, of course (check the inner class representation in puml maybe it should be changed)
-5) Overwrite some Object methods in all classes (toString by hand, other auto-generated in general)
+1) add inner enum PublishOption in Publisher
+  (publish method use PublishOption now)
 
-IDEAS
-1) Maybe we should check in World if countries.length > 1 and if true print only one message with WORLD results for all counties in summary
-and else print results for 1 country (because output looks too huge even with 3 countries)
+2) move some help-help methods in abstract class Publisher (from it's children)
+  (so there is less code now)
+
+3) change initialization and initializationRandom in CountryFactory
+  (it is bad if factory initialize only one variant, so I move creating in main again)
+
+4) CountryInitializationException is Runtime now
+
+5) delete Country-validation from World and make it Singletone
+  (so there is only one World now)
