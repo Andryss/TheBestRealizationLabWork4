@@ -1,47 +1,78 @@
 package TheBestLab4;
 
-public enum Country {
-    RUSSIA("Россия", 1_000_000),
-    FRANCE("ФРАНЦИЯ", 1_000_000),
-    GERMANY("ГЕРМАНИЯ", 1_000_000),
-    NORWAY("НОРВЕГИЯ", 1_000_000);
+import java.util.Arrays;
+import java.util.Objects;
+
+public class Country {
 
     private String name;
     private int population;
     private Person[] people;
     private boolean anarchyFlag = false;
+    public static int MAX_POPULATION = (int) (1e6 + 1);
 
-    Country(String name, int population){
+    private Country(String name, int population){
         this.name = name;
         this.population = population;
-    }
-
-    public void initializationRandom() {
         people = new Person[population];
-        try {
-            immigration();
-        } catch (TooManyPeopleException e){
-            anarchyFlag = true;
-            System.out.println(e.getMessage());
-        }
     }
 
-    private void immigration() throws TooManyPeopleException {
-        for (int i = 0; i < population + (int) (Math.random() * 1.125); ++i){
-            Person person = Person.getRandomPerson();
+    static class CountryFactory{
+
+        public static Country initializationRandom(String name, int population) {
             try {
-                people[i] = person;
-            } catch (ArrayIndexOutOfBoundsException e){
-                throw new TooManyPeopleException(this, person);
+                if (population > MAX_POPULATION) {
+                    throw new CountryInitializationException(name, population);
+                }
+            } catch (CountryInitializationException e){
+                System.out.println(e.getMessage());
+                return null;
+            }
+            Country thisCountry = new Country(name, population);
+            thisCountry.people = new Person[population];
+            try {
+                immigration(thisCountry);
+            } catch (TooManyPeopleException e){
+                thisCountry.anarchyFlag = true;
+                System.out.println(e.getMessage());
+            }
+            return thisCountry;
+        }
+
+        private static void immigration(Country thisCountry) throws TooManyPeopleException {
+            for (int i = 0; i < thisCountry.population + (int) (Math.random() * 1.125); ++i){
+                Person person = Person.getRandomPerson();
+                try {
+                    thisCountry.people[i] = person;
+                } catch (ArrayIndexOutOfBoundsException e){
+                    throw new TooManyPeopleException(thisCountry, person);
+                }
             }
         }
-    }
 
-    public void initialization(Person[] people) {
-        if (people.length != population) {
-            throw new CountryInitializationException(this, people);
+        public static Country initialization(String name, int population) {
+            try {
+                if (population > MAX_POPULATION) {
+                    throw new CountryInitializationException(name, population);
+                }
+            } catch (CountryInitializationException e){
+                System.out.println(e.getMessage());
+                return null;
+            }
+            Country thisCountry = new Country(name, population);
+            for(int i = 0; i < thisCountry.population; i++){
+                if (i < 163_000) {
+                    thisCountry.people[i] = new Person("Любитель психологии",new Genre[]{Genre.PSYCHOLOGICAL});
+                } else if (i < 163_000 + 92_000) {
+                    thisCountry.people[i] = new Person("Любитель детективов",new Genre[]{Genre.DETECTIVE});
+                } else if (i < 163_000 + 92_000 + 71_000 + 1) {
+                    thisCountry.people[i] = new Person("Любитель романов",new Genre[]{Genre.NOVEL});
+                } else {
+                    thisCountry.people[i] = new Person("Нелюбитель",new Genre[]{});
+                }
+            }
+            return thisCountry;
         }
-        this.people = people;
     }
 
     public String getName() {return name;}
@@ -59,5 +90,24 @@ public enum Country {
             throw new CountryIsAnarchyException(this);
         }
         return people;
+    }
+
+    public String toString(){
+        return "Country " + getName() + " with population " + getPopulation();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Country country = (Country) o;
+        return population == country.population && anarchyFlag == country.anarchyFlag && Objects.equals(name, country.name) && Arrays.equals(people, country.people);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name, population, anarchyFlag);
+        result = 31 * result + Arrays.hashCode(people);
+        return result;
     }
 }

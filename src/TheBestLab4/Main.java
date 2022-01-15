@@ -14,22 +14,11 @@ public class Main {
         Book thirdPlace = new Book("Виктор Пелевин","Transhumanism inc.",Genre.NOVEL);
         Book[] books = {harryPotter, theStainlessSteelRat, firstPlace, secondPlace, thirdPlace};
 
-        Person[] russianPopulation = new Person[Country.RUSSIA.getPopulation()];
-        for(int i = 0; i < russianPopulation.length; i++){
-            if (i < 163_000) {
-               russianPopulation[i] = new Person("Любитель психологии",new Genre[]{Genre.PSYCHOLOGICAL});
-            } else if (i < 163_000 + 92_000) {
-                russianPopulation[i] = new Person("Любитель детективов",new Genre[]{Genre.DETECTIVE});
-            } else if (i < 163_000 + 92_000 + 71_000 + 1) {
-                russianPopulation[i] = new Person("Любитель романов",new Genre[]{Genre.NOVEL});
-            } else {
-                russianPopulation[i] = new Person("Нелюбитель",new Genre[]{});
-            }
-        }
-        Country.RUSSIA.initialization(russianPopulation);
+        Country RUSSIA = Country.CountryFactory.initializationRandom("Россия", (int) (5e5));
+        Country SWEDEN = Country.CountryFactory.initialization("Швеция", (int) (1e5));
+        Country USSR = Country.CountryFactory.initializationRandom("СССР", (int) (2e5));
 
-        World world = new World(2022, new Country[]{Country.RUSSIA});
-        // World world = new World(2022, Country.values());
+        World world = new World(2022, new Country[]{RUSSIA, SWEDEN, USSR});
 
         publisher.publish(world, books);
     }

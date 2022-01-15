@@ -1,16 +1,16 @@
 package TheBestLab4;
 
-public class CountryInitializationException extends RuntimeException {
-    private Country country;
-    private Person[] people;
+public class CountryInitializationException extends Exception {
+    String country;
+    private int population;
 
     public CountryInitializationException() {
         super();
     }
 
-    public CountryInitializationException(Country country, Person[] people) {
-        this.country = country;
-        this.people = people;
+    public CountryInitializationException(String name, int population) {
+        this.country = name;
+        this.population = population;
     }
 
     public CountryInitializationException(String message) {
@@ -33,6 +33,6 @@ public class CountryInitializationException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return "Страна " + country.getName() + " c населением " + country.getPopulation() + " не может поместить " + people.length + " людей.";
+        return "Страна " + country + " c населением " + population + " не может существовать, так как максимальное возможное население страны " + Country.MAX_POPULATION + " людей.";
     }
 }

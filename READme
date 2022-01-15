@@ -1,5 +1,13 @@
 List of changes:
-1) delete edition-field from Book (useless field)
-2) add new Book constructor (without about-field)
-3) set up Main method
- (remind: we need inner classes and overrided Object methods)
+1) BIGGGG changes in Country:
+    * it's not enum
+    * added inner static class CountryFactory (Code for initialization from Main copypasted there)
+    * since CountryInitializationException extends Exception now, added some try-catches blocks in CountryFactory
+2) added countries validation in World (if population of Country > MAX_POPULATION initializer returns null)
+3) Main looks a lot prettier now))
+4) Changes in puml, of course (check the inner class representation in puml maybe it should be changed)
+5) Overwrite some Object methods in all classes (toString by hand, other auto-generated in general)
+
+IDEAS
+1) Maybe we should check in World if countries.length > 1 and if true print only one message with WORLD results for all counties in summary
+and else print results for 1 country (because output looks too huge even with 3 countries)

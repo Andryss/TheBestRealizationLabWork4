@@ -36,30 +36,31 @@ Genre(String name)
 }
 
 
-enum Country{
-USSR("СССР", 1_000_000),
-FRANCE("Франция", 1_000_000),
-GERMANY("Германия", 1_000_000),
-NORWAY("Норвегия", 1_000_000);
+class Country{
 --Fields--
 - String name
 - int population
-'persons-heap :)
 - Person[] people
 - boolean anarchyFlag
++ static int MAX_POPULATION = 1e6 + 1;
 --Constructors--
 Country(String name, int population)
 --Methods--
-'method, which invoke immigration method
-+ initializationRandom() : void
-- immigration() : void
-'method, which set up people (setter)
-+ initialization(Person[] people) : void
 + getName(): String
 + getPopulation(): int
 + isAnarchy(): boolean
 + getPeople() : Person[]
+--InnerClasses--
+static class CountryFactory
 }
+
+class CountryFactory {
++ static initializationRandom(String name, int population): Country
+- static imigration(Country thisCountry): void
++ static initialization(String name, int population): Country
+}
+
+Country +-- CountryFactory
 
 interface Readable {
 --Methods--
@@ -162,6 +163,7 @@ class World {
 'some changes here
 World(int year, Country[] countries)
 --Methods--
+- validCountries: Country[]
 + getCountries() : Country[]
 + getYear() : int
 }
@@ -191,13 +193,13 @@ CountyIsAnarchyException(Country country)
 }
 
 'new exception
-class CountryInitializationException extends RuntimeException {
+class CountryInitializationException extends Exception {
 'Country can't set People[] if user gives wrong length of People[]
 --Fields--
-- Country country
-- Person[] people
+- String country
+- int population
 --Constructors--
-CountryInitializationException(Country country, Person[] people)
+CountryInitializationException(String name, int population)
 --Methods--
 + getMessage() : String
 }

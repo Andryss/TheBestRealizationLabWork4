@@ -1,7 +1,10 @@
 package TheBestLab4;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Person {
-    private static final String[] names = new String[]{"Аркадий", "Андрей", "Иван", "Мария", "Татьяна", "Владислав"};
+    private static final String[] DEFAULT_NAMES = new String[]{"Аркадий", "Андрей", "Иван", "Мария", "Татьяна", "Владислав"};
     private String name;
     private Genre[] favouriteGenres;
 
@@ -11,7 +14,7 @@ public class Person {
     }
 
     public static String getRandomName(){
-        return names[(int) (names.length * Math.random())];
+        return DEFAULT_NAMES[(int) (DEFAULT_NAMES.length * Math.random())];
     }
 
     public static Person getRandomPerson() {
@@ -109,5 +112,20 @@ public class Person {
 
     public String toString(){
         return "Person " + name;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) && Arrays.equals(favouriteGenres, person.favouriteGenres);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(name);
+        result = 31 * result + Arrays.hashCode(favouriteGenres);
+        return result;
     }
 }
