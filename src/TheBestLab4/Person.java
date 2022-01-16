@@ -8,8 +8,8 @@ import java.util.Objects;
  */
 public class Person {
     private static final String[] DEFAULT_NAMES = new String[]{"Аркадий", "Андрей", "Иван", "Мария", "Татьяна", "Владислав"};
-    private String name;
-    private Genre[] favouriteGenres;
+    private final String name;
+    private final Genre[] favouriteGenres;
 
     public Person(String name, Genre[] genres){
         this.name = name;

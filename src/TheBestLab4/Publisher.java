@@ -8,9 +8,9 @@ import java.util.Objects;
 /**
  * Publisher class asks persons about their preferences
  */
-public abstract class Publisher {
+public abstract class Publisher implements Publishable {
 
-    private String name;
+    private final String name;
 
     public Publisher(String name){
         this.name = name;
@@ -57,15 +57,16 @@ public abstract class Publisher {
             rating.put(readable, 0);
         }
 
-        for (Person person : country.getPeople()) {
-            Readable[] readables1 = invokePersonMethod(person, readables);
-            if (readables1.length != 0 && readables1[0] != null) {
-                for (Readable readable : readables1) {
-                    rating.put(readable, rating.get(readable) + 1);
+        if (!country.isAnarchy()) {
+            for (Person person : country.getPeople()) {
+                Readable[] readables1 = invokePersonMethod(person, readables);
+                if (readables1.length != 0 && readables1[0] != null) {
+                    for (Readable readable : readables1) {
+                        rating.put(readable, rating.get(readable) + 1);
+                    }
                 }
             }
         }
-
 
         return rating;
     }
@@ -135,17 +136,12 @@ public abstract class Publisher {
         return getClass().getName() + " " + name;
     }
 
-    enum PublishOption {
-        IN_EACH_COUNTRY,
-        ALL_AROUND_THE_WORLD
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Publisher publisher = (Publisher) o;
-        return Objects.equals(name, publisher.name);
+        return name.equals(publisher.name);
     }
 
     @Override

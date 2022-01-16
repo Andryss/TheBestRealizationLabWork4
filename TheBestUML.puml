@@ -17,15 +17,17 @@
 'тыс. экземпляров.
 
 enum Genre {
-ADVENTURE("приключенческая книга")
-VISUAL_NOVEL("визуальная новелла")
-DETECTIVE("детектив")
-DRAMA("драма")
-FANTASY("фэнтези"),
-SCIENCE_FICTION("научная фантастика"),
-HISTORICAL("историческая книга"),
-ANIME("Аниме"),
-PSYCHOLOGIC("психологическая книга");
+ADVENTURE("Приключенческая книга")
+VISUAL_NOVEL("Визуальная новелла")
+DETECTIVE("Детектив")
+DRAMA("Драма")
+FANTASY("Фэнтези")
+SCIENCE_FICTION("Научная фантастика")
+HISTORICAL("Историческая книга")
+PSYCHOLOGICAL("Психологическая книга")
+PULPFICTION("Бульварное чтиво")
+ANIME("Аниме")
+NOVEL("Роман")
 --Fields--
 - final String name
 --Constructors--
@@ -33,19 +35,19 @@ Genre(String name)
 --Methods--
 + static getRandomGenre() : Genre
 + static getRandomGenres() : Genre[]
++ static isIn(Genre o, Genre[] os) : boolean
 + getName() : String
 }
 
 
 class Country{
 --Fields--
-- String name
-- int population
+- final String name
 - Person[] people
-- boolean anarchyFlag
-+ static int MAX_POPULATION = 1e6 + 1;
+- boolean anarchyFlag = false
++ static int MAX_POPULATION = 1e6 + 1
 --Constructors--
-Country(String name, int population)
+- Country(String name, int population)
 --Methods--
 + getName(): String
 + getPopulation(): int
@@ -53,16 +55,28 @@ Country(String name, int population)
 + getPeople() : Person[]
 --InnerClasses--
 static class CountryFactory
+non-static class AnarchyLeader
 }
 
 
 class CountryFactory {
+--Methods--
 + static initializationRandom(String name, int population): Country
 - static imigration(Country thisCountry): void
 + static initialization(String name, int population): Country
 }
 
+class AnarchyLeader {
+--Fields--
+String name
+--Constructors--
+AnarchyLeader(String name)
+--Methods--
++ makeAnarchyInCountry(): void
+}
+
 Country +-- CountryFactory
+Country +-- AnarchyLeader
 
 
 interface Readable {
@@ -94,26 +108,27 @@ Book(String author, String title, Genre genre)
 class Person {
 --Fields--
 - final static String[] names;
-- String name
-- Genre[] favouriteGenres
+- final String name
+- final Genre[] favouriteGenres
+--Constructors--
+Person(String name, Genre[] genres)
 --Methods--
 + static getRandomName(): String
 + static getRandomPerson() : Person
 + getName() : String
 + getFavouriteGenres(): Genre[]
 + whatYouBuy(Readable[] readable): Readable[]
-+ choseBest(Readable[] readable): Readable
-+ choseWorst(Readable[] readable): Readable
++ choseTheBest(Readable[] readable): Readable
++ choseTheWorst(Readable[] readable): Readable
 }
 
 
-abstract class Publisher {
+abstract class Publisher implements Publishable {
 --Fields--
-- String name
+- final String name
 --Constructors--
 Publisher(String name)
 --Methods--
-
 # abstract invokePersonMethod(Person person, Readable[] readables): Readable[]
 + publish(World world, Readable[] readables, PublishOption option) : void
 # surveyCountry(Country country, Readable[] readables) : Map<Readable, Integer>
@@ -125,12 +140,20 @@ Publisher(String name)
 }
 
 
+interface Publishable {
+--Methods--
+publish(World world, Readable[] readables, Publishable.PublishOption option) : void
+--InnerClasses--
+enum PublishOption
+}
+
+
 enum PublishOption {
 IN_EACH_COUNTRY,
 ALL_AROUND_THE_WORLD
 }
 
-Publisher +-- PublishOption
+Publishable +-- PublishOption
 
 
 'publisher, which invokes whatYouBuy
@@ -171,7 +194,7 @@ class World {
 --Fields--
 - int year
 - Country[] countries
-- static final WORLD
+- static final WORLD = new World()
 --Constructors--
 - World()
 --Methods--

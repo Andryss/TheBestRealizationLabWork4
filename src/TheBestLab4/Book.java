@@ -2,11 +2,14 @@ package TheBestLab4;
 
 import java.util.Objects;
 
+/**
+ * Book class represent simple book with author, genre and title
+ */
 public class Book implements Readable{
-    private String author;
-    private String title;
-    private Genre genre;
-    private String about;
+    private final String author;
+    private final String title;
+    private final Genre genre;
+    private final String about;
 
     Book(String author, String title, Genre genre, String about){
         this.author = author;
@@ -19,6 +22,10 @@ public class Book implements Readable{
         this(author,title,genre,"*неизвестное содержимое*");
     }
 
+    /**
+     * Implemented method, which returns all info about book
+     * @return String with all info
+     */
     public String read(){
         return "\"" + getTitle() + "\" в жанре \"" + getGenre().getName() + "\" автора " + getAuthor() + " (" + getAbout() + ")";
     }
@@ -40,7 +47,7 @@ public class Book implements Readable{
     }
 
     public String toString(){
-        return read();
+        return "Book \"" + getTitle() + "\"";
     }
 
     public int hashCode(){

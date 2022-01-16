@@ -9,7 +9,7 @@ import java.util.Objects;
  */
 public class Country {
 
-    private String name;
+    private final String name;
     private Person[] people;
     private boolean anarchyFlag = false;
     public static int MAX_POPULATION = (int) (1e6 + 1);
@@ -76,16 +76,22 @@ public class Country {
         }
     }
 
-    public class CountryLeader{
+    /**
+     * Inner non-static class AnarchyLeader represent person, who can make country anarchy
+     */
+    public class AnarchyLeader{
         String name;
 
-        public CountryLeader(String name){
+        public AnarchyLeader(String name){
             this.name = name;
         }
 
+        /**
+         * Method, which makes country anarchy
+         */
         public void makeAnarchyInCountry(){
             Country.this.anarchyFlag = true;
-            System.out.println("В стране " + getName() + " вспыхнуло восстание, организованное " + name + ".");
+            System.out.println("В стране " + getName() + " вспыхнуло восстание, лидером которого стал " + name + ".");
         }
     }
 

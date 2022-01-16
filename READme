@@ -1,5 +1,6 @@
 List of changes:
-1) Turns out that abstract class ChoosingPublisher isn't necessary at all (Look inside Publish class)
-2) Each non abstract Publisher now includes 2 methods: printResult and invokePersonMethod
-3) changes in puml
-4) TODO: add interface (Maybe publishable and create some local class with only 2 methods in it)
+1) add local class in main
+2) add interface Publishable for publisher
+3) add javadoc comments
+4) set up main method
+5) beauty-changes

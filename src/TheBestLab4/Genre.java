@@ -16,7 +16,7 @@ public enum Genre {
     ANIME("Аниме"),
     NOVEL("Роман");
 
-    private String name;
+    private final String name;
 
     Genre(String name){
         this.name = name;
