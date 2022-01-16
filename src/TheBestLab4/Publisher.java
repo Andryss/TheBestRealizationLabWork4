@@ -16,13 +16,33 @@ public abstract class Publisher {
         this.name = name;
     }
 
+
+    /**
+     * Method that determines the way publisher will make a survey
+     * @param person Person who we will ask
+     * @param readables Readables that are allowed for him to buy/choose
+     */
+    abstract protected Readable[] invokePersonMethod(Person person, Readable[] readables);
+
     /**
      * Main method, which contains the main logic of class (only one public method)
      * @param world World with countries
      * @param readables Readables, which participate in the survey
      * @param option see PublishOption inner enum
      */
-    abstract public void publish(World world, Readable[] readables, PublishOption option);
+    public void publish(World world, Readable[] readables, PublishOption option){
+        if (option == PublishOption.IN_EACH_COUNTRY) {
+            System.out.println("Издательская компания " + getName() + " представила данные по книжным предпочтениям людей в разных странах в " + world.getYear() + " году.");
+            for (Country country : world.getCountries()) {
+                Map<Readable, Integer> rating = surveyCountry(country, readables);
+                printCountryResult(country, readables, rating);
+            }
+        } else if (option == PublishOption.ALL_AROUND_THE_WORLD) {
+            System.out.println("Издательская компания " + getName() + " представила данные по книжным предпочтениям людей по всему миру в " + world.getYear() + " году:");
+            Map<Readable, Integer> rating = surveyWorld(world, readables);
+            printWorldResult(readables, rating);
+        }
+    }
 
     /**
      * Method, which survey one Country
@@ -30,7 +50,25 @@ public abstract class Publisher {
      * @param readables Readables, which participate in the survey
      * @return Map with rating
      */
-    protected abstract Map<Readable, Integer> surveyCountry(Country country, Readable[] readables);
+    protected Map<Readable, Integer> surveyCountry(Country country, Readable[] readables) {
+        Map<Readable, Integer> rating = new HashMap<>();
+
+        for (Readable readable : readables) {
+            rating.put(readable, 0);
+        }
+
+        for (Person person : country.getPeople()) {
+            Readable[] readables1 = invokePersonMethod(person, readables);
+            if (readables1.length != 0 && readables1[0] != null) {
+                for (Readable readable : readables1) {
+                    rating.put(readable, rating.get(readable) + 1);
+                }
+            }
+        }
+
+
+        return rating;
+    }
 
     /**
      * Method, which survey one World

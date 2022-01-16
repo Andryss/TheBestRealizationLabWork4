@@ -85,6 +85,7 @@ public class Country {
 
         public void makeAnarchyInCountry(){
             Country.this.anarchyFlag = true;
+            System.out.println("В стране " + getName() + " вспыхнуло восстание, организованное " + name + ".");
         }
     }
 

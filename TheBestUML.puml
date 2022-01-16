@@ -24,6 +24,7 @@ DRAMA("драма")
 FANTASY("фэнтези"),
 SCIENCE_FICTION("научная фантастика"),
 HISTORICAL("историческая книга"),
+ANIME("Аниме"),
 PSYCHOLOGIC("психологическая книга");
 --Fields--
 - final String name
@@ -112,8 +113,10 @@ abstract class Publisher {
 --Constructors--
 Publisher(String name)
 --Methods--
-+ abstract publish(World world, Readable[] readables, PublishOption option) : void
-# abstract surveyCountry(Country country, Readable[] readables) : Map<Readable, Integer>
+
+# abstract invokePersonMethod(Person person, Readable[] readables): Readable[]
++ publish(World world, Readable[] readables, PublishOption option) : void
+# surveyCountry(Country country, Readable[] readables) : Map<Readable, Integer>
 # surveyWorld(World world, Readable[] readables) : Map<Readable, Integer>
 # abstract printResult(Readable[] readables, Map<Readable, Integer> rating) : void
 # printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating) : void
@@ -136,25 +139,14 @@ class PurchasingPublisher extends Publisher {
 --Constructors--
 TheBestPublisher(String name)
 --Methods--
-# surveyCountry(Country country, Readable[], readables): Map<Readable, Integer>
+# invokePersonMethod(Person person, Readable[] readables): Readable[]
 # printResult(Readable[] readables, Map<Readable, Integer> rating) : void
-+ publish(World world, Readable[] readables, PublishOption option): void
 }
 
-
-abstract class ChoosingPublisher extends Publisher {
---Fields--
---Constructors--
-ChoosingPublisher(String name)
---Methods--
-# abstract invokePersonMethod(Person person, Readable[] readables)
-# surveyCountry(Country country, Readable[], readables): Map<Readable, Integer>
-+ publish(World world, Readable[] readables): void
-}
 
 
 'publisher which invokes choseBest method
-class ChoosingBestPublisher extends ChoosingPublisher {
+class ChoosingBestPublisher extends Publisher {
 --Fields--
 --Constructors--
 ChoosingBestPublisher(String name)
@@ -165,7 +157,7 @@ ChoosingBestPublisher(String name)
 
 
 'publisher which invokes choseWorst method
-class ChoosingWorstPublisher extends ChoosingPublisher {
+class ChoosingWorstPublisher extends Publisher {
 --Fields--
 --Constructors--
 ChoosingBestPublisher(String name)

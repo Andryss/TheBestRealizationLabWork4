@@ -4,8 +4,8 @@ public class Main {
 
     public static void main(String[] args){
         PurchasingPublisher publisher = new PurchasingPublisher("Компания \"Эксмо\"");
-        // ChoosingBestPublisher publisher = new ChoosingBestPublisher("Компания \"Эксмо\"");
-        // ChoosingWorstPublisher publisher = new ChoosingWorstPublisher("Компания \"Эксмо\"");
+//         ChoosingBestPublisher publisher = new ChoosingBestPublisher("Компания \"Эксмо\"");
+//         ChoosingWorstPublisher publisher = new ChoosingWorstPublisher("Компания \"Эксмо\"");
 
 
         Book harryPotter = new Book("Джоан Роулинг","Гарри Поттер",Genre.ADVENTURE,"повествует о мальчике, который выжил");
