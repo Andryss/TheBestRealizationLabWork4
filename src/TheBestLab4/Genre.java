@@ -13,6 +13,7 @@ public enum Genre {
     HISTORICAL("Историческая книга"),
     PSYCHOLOGICAL("Психологическая книга"),
     PULPFICTION("Бульварное чтиво"),
+    ANIME("Аниме"),
     NOVEL("Роман");
 
     private String name;
@@ -37,7 +38,7 @@ public enum Genre {
      * @return random-generated Genre[]
      */
     public static Genre[] getRandomGenres(){
-        int curLengthGenres = (int) (Math.random() * 3 + 1);
+        int curLengthGenres = (int) (Math.random() * 4);
         Genre[] curGenres = new Genre[curLengthGenres];
         int cnt = 0;
         while (cnt != curLengthGenres){

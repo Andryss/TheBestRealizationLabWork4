@@ -13,7 +13,20 @@ public class Main {
         Book firstPlace = new Book("Михаил Лабковский","Хочу и буду",Genre.PSYCHOLOGICAL);
         Book secondPlace = new Book("Майк Омер","Внутри убийцы",Genre.DETECTIVE,"криминальный психолог-женщина расследует череду жестоких преступлений");
         Book thirdPlace = new Book("Виктор Пелевин","Transhumanism inc.",Genre.NOVEL);
-        Book[] books = {harryPotter, theStainlessSteelRat, firstPlace, secondPlace, thirdPlace};
+        Readable infoGypsyBook = new Readable(){
+
+            public String read(){
+                return " название и автор которой стали легендарными всего через несколько дней после публикации.\n" +
+                        " Теперь сложно представить хотя бы одного человека, кто не просто не слышал, но не зачитывался этой книгой несколько десятков раз за вечер.\n" +
+                        "Хорошая книга. Детектив. Приключенческая книга. Визуальная новелла. Драма. Аниме. Бульварное чтиво. Психологическая книга. Историческая книга. Фэнтези. Научная фантастика. Роман.\n" +
+                        "(Доступна для покупки во всех магазинах мира всего за 999.99$)";
+            }
+
+
+        };
+        Readable bookAboutNothing = () -> "Эта книга ни о чём для настоящих \"Нелюбителей\".\n Не тратьте на неё время...";
+        Readable[] books = {harryPotter, theStainlessSteelRat, firstPlace, secondPlace, thirdPlace};
+//        Readable[] books = {harryPotter, theStainlessSteelRat, firstPlace, secondPlace, thirdPlace, infoGypsyBook, bookAboutNothing};
 
 
         Person[] people = new Person[(int) 5e5];

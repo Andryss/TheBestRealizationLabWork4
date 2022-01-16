@@ -1,3 +1,5 @@
 List of changes:
-1) added non-static inner class  CountryLeader who can start anarchy in Country
-2) Fixed using of CountryIsAnarchyException it wasn't performing right
+1) added local class infoGypsyBook
+2) added anonymous class bookAboutNothing
+3) edited getRandomGenre: now return from 0 to 3 Genres, before - from 1 to 4
+4) edited Person.whatYouBuy to work correctly with books with 0 Genres

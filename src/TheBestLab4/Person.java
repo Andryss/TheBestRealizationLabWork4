@@ -55,6 +55,9 @@ public class Person {
                     break;
                 }
             }
+            if (favouriteGenres.length == 0 && readable.read().startsWith("Эта книга ни о чём")){
+                cnt++;
+            }
         }
         whatIBuy = new Readable[cnt];
         cnt = 0;
@@ -65,6 +68,10 @@ public class Person {
                     cnt++;
                     break;
                 }
+            }
+            if (favouriteGenres.length == 0 && readable.read().startsWith("Эта книга ни о чём")){
+                whatIBuy[cnt] = readable;
+                cnt++;
             }
         }
         return whatIBuy;
