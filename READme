@@ -1,3 +1,3 @@
 List of changes:
-1) add javadoc comments
-  (we also need inner non-static class)
+1) added non-static inner class  CountryLeader who can start anarchy in Country
+2) Fixed using of CountryIsAnarchyException it wasn't performing right

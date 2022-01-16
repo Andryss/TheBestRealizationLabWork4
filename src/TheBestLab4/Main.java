@@ -29,6 +29,8 @@ public class Main {
             }
         }
         Country RUSSIA = Country.CountryFactory.initialization("Россия", people);
+//        Country.CountryLeader heWhoMustNotBeNamed = RUSSIA.new CountryLeader("Алексей");
+//        heWhoMustNotBeNamed.makeAnarchyInCountry();
 
 
         Country SWEDEN = Country.CountryFactory.initializationRandom("Швеция", (int) (5e5));

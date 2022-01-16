@@ -71,11 +71,10 @@ public abstract class Publisher {
     protected void printCountryResult(Country country, Readable[] readables, Map<Readable, Integer> rating) {
         Arrays.sort(readables, (o1, o2) -> rating.get(o2) - rating.get(o1));
 
-        System.out.println("В стране " + country.getName() + ":");
         if (country.isAnarchy()) {
-            System.out.println("*смеется по-анархически*");
             return;
         }
+        System.out.println("В стране " + country.getName() + ":");
         printResult(readables, rating);
     }
 

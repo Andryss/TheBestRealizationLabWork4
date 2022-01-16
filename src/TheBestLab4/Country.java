@@ -76,6 +76,18 @@ public class Country {
         }
     }
 
+    public class CountryLeader{
+        String name;
+
+        public CountryLeader(String name){
+            this.name = name;
+        }
+
+        public void makeAnarchyInCountry(){
+            Country.this.anarchyFlag = true;
+        }
+    }
+
     public String getName() {return name;}
 
     public int getPopulation() {
