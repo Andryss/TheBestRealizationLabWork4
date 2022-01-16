@@ -3,6 +3,10 @@ package TheBestLab4;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * <p>Class World is a container for countries</p>
+ * <p>World is a Singleton pattern</p>
+ */
 public class World {
 
     private int year;
@@ -11,6 +15,12 @@ public class World {
 
     private World() {}
 
+    /**
+     * Method, which returns the only one World
+     * @param year year we want to set
+     * @param countries Country[] we want to set
+     * @return the only one instance of World
+     */
     public static World newInstance(int year, Country[] countries){
         WORLD.year = year;
         WORLD.countries = countries;

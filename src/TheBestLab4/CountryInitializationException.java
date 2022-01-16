@@ -1,5 +1,8 @@
 package TheBestLab4;
 
+/**
+ * Country can't set People[] if user gives wrong length of People[]
+ */
 public class CountryInitializationException extends RuntimeException {
     String country;
     private int population;

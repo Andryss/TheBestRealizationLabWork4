@@ -3,6 +3,9 @@ package TheBestLab4;
 import java.util.Arrays;
 import java.util.Objects;
 
+/**
+ * Class Person represents simple person, which like some Genres and dislike others
+ */
 public class Person {
     private static final String[] DEFAULT_NAMES = new String[]{"Аркадий", "Андрей", "Иван", "Мария", "Татьяна", "Владислав"};
     private String name;
@@ -13,10 +16,18 @@ public class Person {
         this.favouriteGenres = genres;
     }
 
+    /**
+     * Method, which creates random name
+     * @return randomly-generated name
+     */
     public static String getRandomName(){
         return DEFAULT_NAMES[(int) (DEFAULT_NAMES.length * Math.random())];
     }
 
+    /**
+     * Method, which creates random Person
+     * @return randomly-generated Person
+     */
     public static Person getRandomPerson() {
         return new Person(Person.getRandomName(), Genre.getRandomGenres());
     }
@@ -29,6 +40,11 @@ public class Person {
         return name;
     }
 
+    /**
+     * Method, which asks person
+     * @param readables Readables, which participate in the survey
+     * @return Readable[] what person buy
+     */
     public Readable[] whatYouBuy(Readable[] readables){
         Readable[] whatIBuy;
         int cnt = 0;
@@ -54,6 +70,11 @@ public class Person {
         return whatIBuy;
     }
 
+    /**
+     * Method, which asks person
+     * @param readables Readables, which participate in the survey
+     * @return Readable what person choose
+     */
     public Readable chooseTheBest(Readable[] readables){
         Readable[] whatIChoose;
         int cnt = 0;
@@ -82,6 +103,11 @@ public class Person {
         return null;
     }
 
+    /**
+     * Method, which asks person
+     * @param readables Readables, which participate in the survey
+     * @return Readable what person choose
+     */
     public Readable chooseTheWorst(Readable[] readables){
         Readable[] whatIChoose;
         int cnt = 0;

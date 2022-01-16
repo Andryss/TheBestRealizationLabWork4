@@ -3,6 +3,9 @@ package TheBestLab4;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Publisher, which invokes person's whatYouBuy method
+ */
 public class PurchasingPublisher extends Publisher {
 
     public PurchasingPublisher(String name){

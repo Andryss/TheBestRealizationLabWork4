@@ -2,6 +2,9 @@ package TheBestLab4;
 
 import java.util.Map;
 
+/**
+ * Publisher, which invokes person's chooseTheBest method
+ */
 public class ChoosingBestPublisher extends ChoosingPublisher {
 
     public ChoosingBestPublisher(String name) {

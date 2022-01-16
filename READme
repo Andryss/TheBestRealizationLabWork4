@@ -1,14 +1,3 @@
 List of changes:
-1) add inner enum PublishOption in Publisher
-  (publish method use PublishOption now)
-
-2) move some help-help methods in abstract class Publisher (from it's children)
-  (so there is less code now)
-
-3) change initialization and initializationRandom in CountryFactory
-  (it is bad if factory initialize only one variant, so I move creating in main again)
-
-4) CountryInitializationException is Runtime now
-
-5) delete Country-validation from World and make it Singletone
-  (so there is only one World now)
+1) add javadoc comments
+  (we also need inner non-static class)

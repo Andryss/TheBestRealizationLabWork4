@@ -1,5 +1,8 @@
 package TheBestLab4;
 
+/**
+ * There may be overpopulation in country
+ */
 public class TooManyPeopleException extends Exception {
     private Country country;
     private Person person;

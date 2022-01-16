@@ -3,12 +3,21 @@ package TheBestLab4;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Publisher, which invokes person's choosing methods
+ */
 public abstract class ChoosingPublisher extends Publisher {
 
     public ChoosingPublisher(String name){
         super(name);
     }
 
+    /**
+     * Method, which invokes choosing method
+     * @param person Person we need to survey
+     * @param readables Readables, which participate in the survey
+     * @return Readable the person choose
+     */
     protected abstract Readable invokePersonMethod(Person person, Readable[] readables);
 
     protected Map<Readable, Integer> surveyCountry(Country country, Readable[] readables) {

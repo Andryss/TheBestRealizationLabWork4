@@ -1,5 +1,8 @@
 package TheBestLab4;
 
+/**
+ * County can't return People[] if anarchy
+ */
 public class CountryIsAnarchyException extends RuntimeException {
     Country country;
 
