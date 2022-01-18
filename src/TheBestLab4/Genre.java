@@ -12,9 +12,10 @@ public enum Genre {
     SCIENCE_FICTION("Научная фантастика"),
     HISTORICAL("Историческая книга"),
     PSYCHOLOGICAL("Психологическая книга"),
-    PULPFICTION("Бульварное чтиво"),
+    PULP_FICTION("Бульварное чтиво"),
     ANIME("Аниме"),
-    NOVEL("Роман");
+    NOVEL("Роман"),
+    REVOLUTION("Книга о революции");
 
     private final String name;
 

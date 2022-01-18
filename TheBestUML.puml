@@ -16,6 +16,8 @@
 'Виктора Пелевина — новинка российского автора разошлась в количестве 71
 'тыс. экземпляров.
 
+'skinparam classAttributeIconSize 0
+
 enum Genre {
 ADVENTURE("Приключенческая книга")
 VISUAL_NOVEL("Визуальная новелла")
@@ -25,7 +27,7 @@ FANTASY("Фэнтези")
 SCIENCE_FICTION("Научная фантастика")
 HISTORICAL("Историческая книга")
 PSYCHOLOGICAL("Психологическая книга")
-PULPFICTION("Бульварное чтиво")
+PULP_FICTION("Бульварное чтиво")
 ANIME("Аниме")
 NOVEL("Роман")
 --Fields--
@@ -62,13 +64,12 @@ non-static class AnarchyLeader
 class CountryFactory {
 --Methods--
 + static initializationRandom(String name, int population): Country
-- static imigration(Country thisCountry): void
+- static immigration(Country thisCountry): void
 + static initialization(String name, int population): Country
 }
 
-class AnarchyLeader {
+class AnarchyLeader extends Person {
 --Fields--
-String name
 --Constructors--
 AnarchyLeader(String name)
 --Methods--

@@ -79,19 +79,18 @@ public class Country {
     /**
      * Inner non-static class AnarchyLeader represent person, who can make country anarchy
      */
-    public class AnarchyLeader{
-        String name;
+    public class AnarchyLeader extends Person {
 
         public AnarchyLeader(String name){
-            this.name = name;
+            super(name, new Genre[]{Genre.REVOLUTION, Genre.ANIME});
         }
 
         /**
          * Method, which makes country anarchy
          */
-        public void makeAnarchyInCountry(){
+        public void makeAnarchyInCountry() {
             Country.this.anarchyFlag = true;
-            System.out.println("В стране " + getName() + " вспыхнуло восстание, лидером которого стал " + name + ".");
+            System.out.println("В стране " + Country.this.getName() + " вспыхнуло восстание, лидером которого стал " + getName() + ".");
         }
     }
 
